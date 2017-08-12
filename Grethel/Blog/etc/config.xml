@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Grethel_Blog>
+            <version>0.1.0</version>
+        </Grethel_Blog>
+    </modules>
+
+    <frontend>
+        <routers>
+            <blog>
+                <use>standard</use>
+                <args>
+                    <module>Grethel_Blog</module>
+                    <frontName>blog</frontName>
+                </args>
+            </blog>
+        </routers>
+    </frontend>
+
+    <admin>
+        <routers>
+            <blog>
+                <use>admin</use>
+                <args>
+                    <module>Grethel_Blog</module>
+                    <frontName>blog</frontName>
+                </args>
+            </blog>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <blog>
+                    <file>grethel_blog.xml</file>
+                </blog>
+            </updates>
+        </layout>
+
+        <menu>
+            <blog>
+                <title>Blog</title>
+                <sort_order>100</sort_order>
+                <children>
+                    <category>
+                        <title>Category</title>
+                        <action>blog/adminhtml_Category</action>
+                    </category>
+                    <postlist translate="title">
+                        <title>Post</title>
+                        <sort_order>50</sort_order>
+                        <action>blog/adminhtml_blog</action>
+                    </postlist>
+                </children>
+            </blog>
+        </menu>
+
+    </adminhtml>
+
+    <global>
+
+        <blocks>
+            <blog>
+                <class>Grethel_Blog_Block</class>
+            </blog>
+        </blocks>
+
+        <models>
+            <test>
+                <class>Grethel_Blog_Model</class>
+                <resourceModel>blog_resource</resourceModel>
+            </test>
+
+            <blog_resource>
+                <class>Grethel_Blog_Model_Resource</class>
+                <entities>
+                    <grethelblog>
+                        <table>grethel_blog</table>
+                    </grethelblog>
+                </entities>
+            </blog_resource>
+        </models>
+
+
+
+        <resources>
+            <blog_setup>
+                <setup>
+                    <module>Grethel_Blog</module>
+                    <class>Grethel_Blog_Model_Resource_Setup</class>
+                </setup>
+            </blog_setup>
+        </resources>
+
+        <helpers>
+            <blog>
+                <class>Grethel_Blog_Helper</class>
+            </blog>
+        </helpers>
+    </global>
+
+</config>
